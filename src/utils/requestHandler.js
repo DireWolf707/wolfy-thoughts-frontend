@@ -3,7 +3,6 @@ import Toast from "../components/layouts/Toast"
 import { capitalize } from "@mui/material"
 
 const handleError400 = ({ message }, setFormErrors) => {
-  setFormErrors({})
   if (message.indexOf(":") < 0) return message
 
   if (setFormErrors) {
