@@ -1,10 +1,10 @@
-import RefreshButton from "./RefreshButton"
+import RefreshFeedButton from "./RefreshFeedButton"
 import PostCard from "./PostCard"
 
 const PostFeed = ({ feed }) => {
   return (
     <>
-      <RefreshButton />
+      <RefreshFeedButton />
 
       {feed.map((post) => (
         <PostCard key={post.id} post={post} />
