@@ -1,9 +1,41 @@
-import React from "react"
 import { useParams } from "react-router-dom"
+import { useEffect } from "react"
+import { Stack } from "@mui/material"
+import PostCard from "../components/posts/PostCard"
+import CommentFeed from "../components/posts/CommentFeed"
+import CommentInput from "../components/posts/CommentInput"
+import ThreeBars from "../components/loaders/ThreeBars"
+import { postApi, dataSliceActions, useDispatch, useSelector } from "../store"
+import requestHandler, { ERR_TOAST } from "../utils/requestHandler"
 
 const Post = () => {
+  const dispatch = useDispatch()
   const { postId } = useParams()
-  return <div>Post: {postId}</div>
+  const { comments } = useSelector((store) => store.data)
+  const [fetchPost, { data, isUninitialized, isFetching, isError }] = postApi.useLazyFetchPostQuery()
+  const post = data?.data
+
+  useEffect(() => {
+    dispatch(dataSliceActions.clearComments())
+
+    requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched")
+      .then(({ data, cursor }) => dispatch(dataSliceActions.initComments({ data: data.comments, cursor })))
+      .catch(ERR_TOAST)
+  }, [])
+
+  if (isUninitialized || isFetching || isError) return <ThreeBars />
+
+  return (
+    <Stack gap="12px" m="26px auto" sx={{ width: { xs: "350px", sm: "420px", md: "460px" } }}>
+      {post && comments && (
+        <>
+          <PostCard post={post} />
+          <CommentInput post={post} />
+          <CommentFeed comments={comments} postId={post.id} />
+        </>
+      )}
+    </Stack>
+  )
 }
 
 export default Post
