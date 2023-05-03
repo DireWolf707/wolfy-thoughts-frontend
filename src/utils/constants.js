@@ -5,13 +5,13 @@ export const navHeight = "96px"
 
 export const navLinks = [
   {
-    title: "profile",
-    href: "/profile",
-    Icon: AccountCircleIcon,
-  },
-  {
     title: "feed",
     href: "/feed",
     Icon: ChatIcon,
+  },
+  {
+    title: "profile",
+    href: "/profile",
+    Icon: AccountCircleIcon,
   },
 ]
