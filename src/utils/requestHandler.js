@@ -38,3 +38,5 @@ export default (requestPromise, loadingMsg, successMsg, setFormErrors = null) =>
     },
   })
 }
+
+export const ERR_TOAST = () => toast.error(Toast("Something went wrong!"))
