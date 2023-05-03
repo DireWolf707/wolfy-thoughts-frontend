@@ -3,7 +3,7 @@ import Sidebar from "./components/layouts/Sidebar"
 import LoggedInRoute from "./components/wrappers/LoggedInRoute"
 import { Stack } from "@mui/material"
 import { Routes, Route } from "react-router-dom"
-import { Profile, Home, Error404, Error500 } from "./pages"
+import { Home, Profile, Feed, Post, Error404, Error500 } from "./pages"
 import { userApi } from "./store"
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
   const user = profile.data
 
   return (
-    <Stack height="100vh" width="100vw" bgcolor="brown">
+    <Stack height="100vh" width="100vw" overflow="auto" bgcolor="#D5D5D5">
       <Navbar />
       {user && <Sidebar />}
 
@@ -20,6 +20,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         {/* LoggedIn Routes */}
         <Route element={<LoggedInRoute />}>
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/post/:postId" element={<Post />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         {/* Server Error (500) */}
