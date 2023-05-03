@@ -1,11 +1,10 @@
 import { useState, useRef } from "react"
 import ThreeBars from "../components/loaders/ThreeBars"
 import UserAvatar from "../components/layouts/UserAvatar"
-import { Stack, Typography, TextField, Button, IconButton, Avatar } from "@mui/material"
+import { Stack, TextField, Button, IconButton } from "@mui/material"
 import { userApi } from "../store"
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto"
 import DeleteIcon from "@mui/icons-material/Delete"
-import randomString from "../utils/randomString"
 import requestHandler from "../utils/requestHandler"
 
 const Profile = () => {
@@ -59,7 +58,7 @@ const Profile = () => {
           <DeleteIcon fontSize="large" sx={{ fill: "red", p: "2px" }} />
         </IconButton>
 
-        <UserAvatar user={user} size="180px" fontSize="70px" />
+        <UserAvatar user={user} size="180px" fontSize="70px" cache={false} />
 
         <IconButton onClick={() => fileRef.current.click()} sx={{ mb: "34px" }}>
           <input
