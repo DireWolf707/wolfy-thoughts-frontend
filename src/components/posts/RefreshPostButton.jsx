@@ -4,16 +4,16 @@ import { navHeight } from "../../utils/constants"
 import { postApi, dataSliceActions, useDispatch } from "../../store"
 import requestHandler from "../../utils/requestHandler"
 
-const RefreshButton = () => {
+const RefreshPostButton = ({ postId }) => {
   const dispatch = useDispatch()
-  const [fetchFeed, { isFetching }] = postApi.useLazyFetchFeedQuery()
+  const [fetchPost, { isFetching }] = postApi.useLazyFetchPostQuery()
 
   const refreshHandler = () => {
-    dispatch(dataSliceActions.clearFeed())
+    dispatch(dataSliceActions.clearComments())
 
-    requestHandler(fetchFeed({}).unwrap(), "fetching posts", "posts fetched").then(({ data, cursor }) => {
-      dispatch(dataSliceActions.initFeed({ data, cursor }))
-    })
+    requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched").then(({ data, cursor }) =>
+      dispatch(dataSliceActions.initComments({ data: data.comments, cursor }))
+    )
   }
 
   return (
@@ -25,4 +25,4 @@ const RefreshButton = () => {
   )
 }
 
-export default RefreshButton
+export default RefreshPostButton
