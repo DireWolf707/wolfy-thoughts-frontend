@@ -17,6 +17,13 @@ export default createApi({
         }),
       }),
 
+      fetchPost: builder.query({
+        query: ({ postId }) => ({
+          url: `/${postId}`,
+          method: "GET",
+        }),
+      }),
+
       createPost: builder.mutation({
         query: ({ data }) => ({
           url: "/create",
