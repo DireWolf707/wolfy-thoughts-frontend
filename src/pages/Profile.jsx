@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import ThreeBars from "../components/loaders/ThreeBars"
+import UserAvatar from "../components/layouts/UserAvatar"
 import { Stack, Typography, TextField, Button, IconButton, Avatar } from "@mui/material"
 import { userApi } from "../store"
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto"
@@ -58,11 +59,7 @@ const Profile = () => {
           <DeleteIcon fontSize="large" sx={{ fill: "red", p: "2px" }} />
         </IconButton>
 
-        <Avatar src={user.avatar + "?dummy=" + randomString(5)} sx={{ height: "180px", width: "180px", objectFit: "cover" }}>
-          <Typography fontFamily="Righteous" fontSize="70px">
-            {user.username[0].toUpperCase()}
-          </Typography>
-        </Avatar>
+        <UserAvatar user={user} size="180px" fontSize="70px" />
 
         <IconButton onClick={() => fileRef.current.click()} sx={{ mb: "34px" }}>
           <input
