@@ -59,7 +59,7 @@ const PostCard = ({ post }) => {
         </Typography>
       </Stack>
 
-      <Typography fontFamily="Alkatra" fontSize="18px" color="#000">
+      <Typography px="13px" fontFamily="Alkatra" fontSize="18px" color="#000">
         {post.content}
       </Typography>
 
@@ -68,7 +68,7 @@ const PostCard = ({ post }) => {
         justifyContent="space-between"
         alignItems="center"
         bgcolor="rgba(0,0,0,0.1)"
-        p="4px 20px 4px 4px"
+        p="2px 20px 2px 4px"
         borderRadius="80px"
       >
         {isLiking || isUnLiking ? (
