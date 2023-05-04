@@ -34,18 +34,22 @@ const PostCard = ({ post }) => {
 
   useEffect(() => {
     if (isInView) {
-      const likeSub = ({ likes, postId }) => post.id === postId && setMetadata((pv) => ({ ...pv, likes }))
-      const commentSub = ({ comments, postId }) => post.id === postId && setMetadata((pv) => ({ ...pv, comments }))
+      const postKey = `post:${post.id}`
+      const likeSubEvent = postKey + ":likes"
+      const likeSubHandler = (likes) => setMetadata((pv) => ({ ...pv, likes }))
+      const commentSubEvent = postKey + ":comments"
+      const commentSubHandler = (comments) => setMetadata((pv) => ({ ...pv, comments }))
+
       socket
         .emitWithAck("sub_post", { postId: post.id })
         .then((metadata) => {
           setMetadata(metadata)
-          socket.on("likes", likeSub)
-          socket.on("comments", commentSub)
+          socket.on(likeSubEvent, likeSubHandler)
+          socket.on(commentSubEvent, commentSubHandler)
         })
         .catch(ERR_TOAST)
 
-      return () => socket.emit("unsub_post", { postId: post.id }).off("likes", likeSub).off("comments", commentSub)
+      return () => socket.emit("unsub_post", { postId: post.id }).off(likeSubEvent, likeSubHandler).off(commentSubEvent, commentSubHandler)
     }
   }, [isInView])
 
