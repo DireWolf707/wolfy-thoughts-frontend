@@ -3,7 +3,7 @@ import { useState } from "react"
 import { userApi, postApi, useDispatch, dataSliceActions } from "../../store"
 import requestHandler from "../../utils/requestHandler"
 
-const CommentInput = ({ post }) => {
+const CommentInput = ({ postId }) => {
   const dispatch = useDispatch()
   const [content, setContent] = useState("")
   const exceedLimit = content.length > 200
@@ -14,7 +14,7 @@ const CommentInput = ({ post }) => {
   } = userApi.useFetchProfileQuery()
 
   const createPostHandler = () =>
-    requestHandler(createComment({ data: { content }, postId: post.id }).unwrap(), "creating comment", "comment created", setError).then(
+    requestHandler(createComment({ data: { content }, postId }).unwrap(), "creating comment", "comment created", setError).then(
       ({ data }) => {
         setContent("")
         const comment = { ...data, user }
