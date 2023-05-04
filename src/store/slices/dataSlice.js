@@ -7,6 +7,7 @@ export const dataSlice = createSlice({
     sidebar: false,
     feed: null,
     comments: null,
+    post: null,
   },
 
   reducers: {
@@ -18,10 +19,6 @@ export const dataSlice = createSlice({
       state.feed = action.payload.data
     },
 
-    updateFeed(state, action) {
-      state.feed.push(...action.payload.data)
-    },
-
     clearFeed(state, action) {
       state.feed = null
     },
@@ -31,14 +28,12 @@ export const dataSlice = createSlice({
     },
 
     initComments(state, action) {
-      state.comments = action.payload.data
-    },
-
-    updateComments(state, action) {
-      state.comments.push(...action.payload.data)
+      state.post = action.payload.post
+      state.comments = action.payload.comments
     },
 
     clearComments(state, action) {
+      state.post = null
       state.comments = null
     },
 
