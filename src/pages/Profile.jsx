@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import ThreeBars from "../components/loaders/ThreeBars"
+import FourSquares from "../components/loaders/FourSquares"
 import UserAvatar from "../components/layouts/UserAvatar"
 import { Stack, TextField, Button, IconButton } from "@mui/material"
 import { userApi } from "../store"
@@ -39,7 +39,7 @@ const Profile = () => {
 
   const handleDeleteAvatar = () => requestHandler(deleteAvatar().unwrap(), "deleting avatar", "avatar deleted", setFormErrors)
 
-  if (isFetching) return <ThreeBars />
+  if (isFetching) return <FourSquares />
 
   return (
     <Stack
