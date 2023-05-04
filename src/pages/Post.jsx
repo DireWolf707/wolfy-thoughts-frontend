@@ -19,7 +19,7 @@ const Post = () => {
     dispatch(dataSliceActions.clearComments())
 
     requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched")
-      .then(({ data, cursor }) => dispatch(dataSliceActions.initComments({ data: data.comments, cursor })))
+      .then(({ data }) => dispatch(dataSliceActions.initComments({ data: data.comments })))
       .catch(ERR_TOAST)
   }, [])
 

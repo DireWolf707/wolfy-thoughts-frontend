@@ -14,8 +14,8 @@ const Feed = () => {
   useEffect(() => {
     dispatch(dataSliceActions.clearFeed())
 
-    requestHandler(fetchFeed({}).unwrap(), "fetching posts", "posts fetched")
-      .then(({ data, cursor }) => dispatch(dataSliceActions.initFeed({ data, cursor })))
+    requestHandler(fetchFeed().unwrap(), "fetching posts", "posts fetched")
+      .then(({ data }) => dispatch(dataSliceActions.initFeed({ data })))
       .catch(ERR_TOAST)
   }, [])
 

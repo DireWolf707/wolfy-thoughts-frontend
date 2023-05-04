@@ -11,8 +11,8 @@ export default createApi({
   endpoints(builder) {
     return {
       fetchFeed: builder.query({
-        query: ({ cursor }) => ({
-          url: `/feed?cursor=${cursor ? cursor : ""}`,
+        query: () => ({
+          url: "/feed",
           method: "GET",
         }),
       }),

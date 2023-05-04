@@ -11,8 +11,8 @@ const RefreshPostButton = ({ postId }) => {
   const refreshHandler = () => {
     dispatch(dataSliceActions.clearComments())
 
-    requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched").then(({ data, cursor }) =>
-      dispatch(dataSliceActions.initComments({ data: data.comments, cursor }))
+    requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched").then(({ data }) =>
+      dispatch(dataSliceActions.initComments({ data: data.comments }))
     )
   }
 
