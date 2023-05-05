@@ -6,7 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined"
 import socket from "../../utils/socket"
 import { postApi, userApi } from "../../store"
-import { useInView } from "framer-motion"
+import { useInView, motion } from "framer-motion"
 import { ERR_TOAST } from "../../utils/requestHandler"
 
 const PostCard = ({ post }) => {
@@ -54,7 +54,17 @@ const PostCard = ({ post }) => {
   }, [isInView])
 
   return (
-    <Stack ref={cardRef} gap="16px" p="18px" bgcolor="#fff" borderRadius="5px" border={post.userId === user.id && "3.6px solid black"}>
+    <Stack
+      component={motion.div}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.8 } }}
+      ref={cardRef}
+      gap="16px"
+      p="18px"
+      bgcolor="#fff"
+      borderRadius="5px"
+      border={post.userId === user.id && "3.6px solid black"}
+    >
       <Stack flexDirection="row" alignItems="center" gap="8px">
         <UserAvatar user={post.user} />
 
