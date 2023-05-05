@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Navigate, Outlet } from "react-router-dom"
 import { userApi } from "../../store"
+import FourSquares from "../loaders/FourSquares"
 import socket from "../../utils/socket"
 
 const LoggedInRoute = ({ redirectPath = "/" }) => {
@@ -20,7 +21,7 @@ const LoggedInRoute = ({ redirectPath = "/" }) => {
   }, [user])
 
   if (!user) return <Navigate to={redirectPath} replace />
-  if (!isSocketConnected) return <></>
+  if (!isSocketConnected) return <FourSquares />
   return <Outlet />
 }
 
