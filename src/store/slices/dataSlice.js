@@ -4,6 +4,7 @@ export const dataSlice = createSlice({
   name: "data",
 
   initialState: {
+    topRef: null,
     sidebar: false,
     feed: null,
     comments: null,
@@ -13,6 +14,10 @@ export const dataSlice = createSlice({
   reducers: {
     toggleSidebar(state, action) {
       state.sidebar = action.payload
+    },
+
+    setTopRef(state, action) {
+      state.topRef = action.payload
     },
 
     initFeed(state, action) {

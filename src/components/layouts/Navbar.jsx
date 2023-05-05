@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react"
 import { Stack, Box, Button, Typography, IconButton, useMediaQuery } from "@mui/material"
 import { navHeight, navLinks } from "../../utils/constants"
 import { Link } from "react-router-dom"
@@ -7,12 +8,17 @@ import { useDispatch, userApi, dataSliceActions } from "../../store"
 import requestHandler from "../../utils/requestHandler"
 
 const Navbar = () => {
+  const topRef = useRef(null)
   const dispatch = useDispatch()
   const isSmall = useMediaQuery((theme) => theme.breakpoints.only("xs"))
   const [logout, { isLoading }] = userApi.useLogoutMutation()
   const {
     data: { data: user = null },
   } = userApi.useFetchProfileQuery()
+
+  useEffect(() => {
+    dispatch(dataSliceActions.setTopRef(topRef))
+  }, [])
 
   const logoutHandler = () => requestHandler(logout().unwrap(), "logging out", "logged out")
 
@@ -75,7 +81,7 @@ const Navbar = () => {
         )}
       </Stack>
 
-      <Box flexShrink={0} height={navHeight} />
+      <Box ref={topRef} flexShrink={0} height={navHeight} />
     </>
   )
 }
