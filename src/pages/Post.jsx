@@ -12,15 +12,17 @@ import CommentsSkeleton from "../components/posts/skeletons/CommentsSkeleton"
 const Post = () => {
   const dispatch = useDispatch()
   const { postId } = useParams()
-  const { comments, post } = useSelector((store) => store.data)
+  const { comments, post, topRef } = useSelector((store) => store.data)
   const [fetchPost] = postApi.useLazyFetchPostQuery()
 
   useEffect(() => {
-    dispatch(dataSliceActions.clearComments())
+    topRef.current.scrollIntoView({ behavior: "instant" })
 
     requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched")
       .then(({ data }) => dispatch(dataSliceActions.initComments({ post: data, comments: data.comments })))
       .catch(ERR_TOAST)
+
+    return () => dispatch(dataSliceActions.clearComments())
   }, [])
 
   return (

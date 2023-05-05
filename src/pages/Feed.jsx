@@ -8,15 +8,17 @@ import FeedSkeleton from "../components/posts/skeletons/FeedSkeleton"
 
 const Feed = () => {
   const dispatch = useDispatch()
-  const { feed } = useSelector((store) => store.data)
+  const { feed, topRef } = useSelector((store) => store.data)
   const [fetchFeed] = postApi.useLazyFetchFeedQuery()
 
   useEffect(() => {
-    dispatch(dataSliceActions.clearFeed())
+    topRef.current.scrollIntoView({ behavior: "instant" })
 
     requestHandler(fetchFeed().unwrap(), "fetching posts", "posts fetched")
       .then(({ data }) => dispatch(dataSliceActions.initFeed({ data })))
       .catch(ERR_TOAST)
+
+    return () => dispatch(dataSliceActions.clearFeed())
   }, [])
 
   return (
