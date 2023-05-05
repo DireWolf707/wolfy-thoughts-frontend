@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react"
-import { Stack, Typography, IconButton, CircularProgress } from "@mui/material"
+import { Stack, Typography, IconButton } from "@mui/material"
 import { Link } from "react-router-dom"
 import UserAvatar from "../layouts/UserAvatar"
+import Hourglass from "../loading/component/Hourglass"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined"
 import socket from "../../utils/socket"
@@ -86,7 +87,7 @@ const PostCard = ({ post }) => {
         borderRadius="80px"
       >
         {isLiking || isUnLiking ? (
-          <CircularProgress thickness={10} sx={{ p: "6px" }} />
+          <Hourglass />
         ) : isPostLiked ? (
           <IconButton onClick={unLikeHandler}>
             <FavoriteIcon sx={{ fill: "red" }} />
@@ -103,7 +104,7 @@ const PostCard = ({ post }) => {
               {metadata.likes} likes
             </Typography>
           ) : (
-            <CircularProgress thickness={12} sx={{ p: "8px" }} />
+            <Hourglass />
           )}
 
           {metadata?.comments !== null ? (
@@ -121,7 +122,7 @@ const PostCard = ({ post }) => {
               </Typography>
             </Link>
           ) : (
-            <CircularProgress thickness={12} sx={{ p: "8px" }} />
+            <Hourglass />
           )}
         </Stack>
       </Stack>
