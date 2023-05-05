@@ -1,6 +1,7 @@
 import Navbar from "./components/layouts/Navbar"
 import Sidebar from "./components/layouts/Sidebar"
 import LoggedInRoute from "./components/wrappers/LoggedInRoute"
+import SocketProvider from "./components/wrappers/SocketProvider"
 import { Stack } from "@mui/material"
 import { Routes, Route } from "react-router-dom"
 import { Home, Profile, Feed, Post, Error404, Error500 } from "./pages"
@@ -20,8 +21,12 @@ const App = () => {
         <Route path="/" element={<Home />} />
         {/* LoggedIn Routes */}
         <Route element={<LoggedInRoute />}>
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/post/:postId" element={<Post />} />
+          {/* Socket Enabled Routes */}
+          <Route element={<SocketProvider />}>
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/post/:postId" element={<Post />} />
+          </Route>
+          {/* Socket Disabled Routes */}
           <Route path="/profile" element={<Profile />} />
         </Route>
         {/* Server Error (500) */}
