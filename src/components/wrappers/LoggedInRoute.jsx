@@ -10,12 +10,14 @@ const LoggedInRoute = ({ redirectPath = "/" }) => {
   } = userApi.useFetchProfileQuery()
 
   useEffect(() => {
-    const setSocketConnected = () => setIsSocketConnected(true)
-    socket.on("connect", setSocketConnected)
-    socket.connect()
+    if (user) {
+      const setSocketConnected = () => setIsSocketConnected(true)
+      socket.on("connect", setSocketConnected)
+      socket.connect()
 
-    return () => socket.off("connect", setSocketConnected).disconnect()
-  }, [])
+      return () => socket.off("connect", setSocketConnected).disconnect()
+    }
+  }, [user])
 
   if (!user) return <Navigate to={redirectPath} replace />
   if (!isSocketConnected) return <></>
