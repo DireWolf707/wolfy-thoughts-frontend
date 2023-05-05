@@ -57,7 +57,7 @@ const PostCard = ({ post }) => {
   return (
     <Stack
       component={motion.div}
-      initial={{ opacity: 0 }}
+      initial={{ opacity: 0.3 }}
       animate={{ opacity: 1, transition: { duration: 0.8 } }}
       ref={cardRef}
       gap="16px"

@@ -17,7 +17,7 @@ const CommentFeed = ({ comments, postId }) => {
         <Stack
           key={comment.id}
           component={motion.div}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.3 }}
           animate={{ opacity: 1, transition: { duration: 0.8 } }}
           gap="16px"
           p="18px"
