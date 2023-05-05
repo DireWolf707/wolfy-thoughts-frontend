@@ -25,7 +25,7 @@ const AuthCheck = ({ children }) => {
 
   if (isLoading || isError)
     return (
-      <Stack height="100vh" width="100vw">
+      <Stack height="100vh" width="100vw" bgcolor="#000">
         <FourSquares />
       </Stack>
     )
