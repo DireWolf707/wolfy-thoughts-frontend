@@ -37,7 +37,7 @@ const Sidebar = () => {
         },
       }}
     >
-      <Box component="img" src="/assets/logo.svg" height="140px" />
+      <Box component="img" src="/assets/logo-sidebar.svg" height="160px" />
 
       <List sx={{ overflow: "auto" }}>
         {navLinks.map((link, idx) => (
