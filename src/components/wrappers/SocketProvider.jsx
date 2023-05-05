@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Outlet } from "react-router-dom"
-import FourSquares from "../loaders/FourSquares"
+import FourSquares from "../loading/page/FourSquares"
 import socket from "../../utils/socket"
 
 const SocketProvider = () => {

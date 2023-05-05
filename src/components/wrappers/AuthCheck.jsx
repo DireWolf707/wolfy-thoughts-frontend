@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Stack } from "@mui/material"
-import FourSquares from "../loaders/FourSquares"
+import FourSquares from "../loading/page/FourSquares"
 import { userApi } from "../../store"
 import Toast from "../layouts/Toast"
 import toast from "react-hot-toast"
