@@ -12,7 +12,7 @@ const RefreshButton = () => {
   const refreshHandler = () => {
     dispatch(dataSliceActions.clearFeed())
 
-    topRef.current.scrollIntoView({ behavior: "smooth" })
+    topRef.current.scrollIntoView({ behavior: "instant" })
 
     requestHandler(fetchFeed().unwrap(), "fetching posts", "posts fetched")
       .then(({ data }) => dispatch(dataSliceActions.initFeed({ data })))

@@ -12,7 +12,7 @@ const RefreshPostButton = ({ postId }) => {
   const refreshHandler = () => {
     dispatch(dataSliceActions.clearComments())
 
-    topRef.current.scrollIntoView({ behavior: "smooth" })
+    topRef.current.scrollIntoView({ behavior: "instant" })
 
     requestHandler(fetchPost({ postId }).unwrap(), "fetching post", "post fetched")
       .then(({ data }) => dispatch(dataSliceActions.initComments({ post: data, comments: data.comments })))
