@@ -36,7 +36,7 @@ const Navbar = () => {
         }}
       >
         <Link to="/">
-          <Box component="img" src="/assets/logo.svg" height="65px" />
+          <Box component="img" src="/assets/logo.svg" height="24px" />
         </Link>
 
         {user &&
