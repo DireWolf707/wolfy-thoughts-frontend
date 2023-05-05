@@ -1,9 +1,10 @@
-import { Stack, Box } from "@mui/material"
+import { Stack } from "@mui/material"
+import { Player } from "@lottiefiles/react-lottie-player"
 
 const Error500 = () => {
   return (
-    <Stack flexGrow={1}>
-      <Box component="img" height="70vh" width="70vw" m="auto" src="/assets/error500.svg" />
+    <Stack flexGrow={1} justifyContent="center" alignItems="center">
+      <Player autoplay loop src="/assets/animations/500.json" style={{ height: "480px" }} />
     </Stack>
   )
 }
